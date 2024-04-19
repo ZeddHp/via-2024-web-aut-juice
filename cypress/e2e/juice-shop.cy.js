@@ -1,10 +1,12 @@
 import { BasketPage } from "../pageObjects/BasketPage";
+import { CreateAddressPage } from "../pageObjects/CreateAddressPage";
 import { DeliveryMethodPage } from "../pageObjects/DeliveryMethodPage";
 import { HomePage } from "../pageObjects/HomePage";
 import { LoginPage } from "../pageObjects/LoginPage";
 import { OrderCompletionPage } from "../pageObjects/OrderCompletionPage";
 import { OrderSummaryPage } from "../pageObjects/OrderSummaryPage";
 import { PaymentOptionsPage } from "../pageObjects/PaymentOptionsPage";
+import { SavedAddressesPage } from "../pageObjects/SavedAddressesPage";
 import { SelectAddressPage } from "../pageObjects/SelectAddressPage";
 
 describe("Juice-shop scenarios", () => {
@@ -190,19 +192,7 @@ describe("Juice-shop scenarios", () => {
 
 
     // Create scenario - Buy Girlie T-shirt
-    it.only("Buy Girlie T-shirt", () => {
-      // Click Account button
-      LoginPage.accountButton.click();
-      // Click Login button
-      LoginPage.loginButton.click();
-      // Set email value to "demo"
-      LoginPage.email.type("demo");
-      // Set password value to "demo"
-      LoginPage.password.type("demo");
-      // Click Log in
-      LoginPage.logIn.click();
-
-
+    it("Buy Girlie T-shirt", () => {
       // Click on search icon
       HomePage.searchField.type("Girlie");
       // Search for Girlie
@@ -238,17 +228,53 @@ describe("Juice-shop scenarios", () => {
     });
 
 
-
     // Create scenario - Add address
-    // Click on Account
-    // Click on Orders & Payment
-    // Click on My saved addresses
-    // Create page object - SavedAddressesPage
-    // Click on Add New Address
-    // Create page object - CreateAddressPage
-    // Fill in the necessary information
-    // Click Submit button
-    // Validate that previously added address is visible
+    it.only("Add address", () => {
+
+      // Click Account button
+      LoginPage.accountButton.click();
+      // Click Login button
+      LoginPage.loginButton.click();
+      // Set email value to "demo"
+      LoginPage.email.type("demo");
+      // Set password value to "demo"
+      LoginPage.password.type("demo");
+      // Click Log in
+      LoginPage.logIn.click();
+
+
+      // Click on Account
+      LoginPage.accountButton.click();
+      // Click on Orders & Payment
+      //click only first element
+      PaymentOptionsPage.ordersAndPayments.first().click();
+      // Click on My saved addresses
+      SelectAddressPage.savedAddresses.click();
+      // Create page object - SavedAddressesPage
+      // Click on Add New Address
+      SavedAddressesPage.addNewAddressButton.click();
+      // Create page object - CreateAddressPage
+      // Fill in the necessary information
+      //country
+      CreateAddressPage.country.type("United States");
+      //name
+      CreateAddressPage.name.type("John Doe");
+      //mobile
+      CreateAddressPage.mobile.type("123456789");
+      //zip
+      CreateAddressPage.zip.type("12345");
+      //address
+      CreateAddressPage.address.type("1234 Main Street");
+      //city
+      CreateAddressPage.city.type("New York");
+      //state
+      CreateAddressPage.state.type("New York");
+      // Click Submit button
+      CreateAddressPage.submitButton.click();
+      // Validate that previously added address is visible
+      CreateAddressPage.validateName.should("contain.text", "John Doe");
+
+    });
 
     // Create scenario - Add payment option
     // Click on Account
