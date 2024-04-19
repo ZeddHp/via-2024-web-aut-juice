@@ -229,20 +229,7 @@ describe("Juice-shop scenarios", () => {
 
 
     // Create scenario - Add address
-    it.only("Add address", () => {
-
-      // Click Account button
-      LoginPage.accountButton.click();
-      // Click Login button
-      LoginPage.loginButton.click();
-      // Set email value to "demo"
-      LoginPage.email.type("demo");
-      // Set password value to "demo"
-      LoginPage.password.type("demo");
-      // Click Log in
-      LoginPage.logIn.click();
-
-
+    it("Add address", () => {
       // Click on Account
       LoginPage.accountButton.click();
       // Click on Orders & Payment
@@ -277,6 +264,43 @@ describe("Juice-shop scenarios", () => {
     });
 
     // Create scenario - Add payment option
+    it.only("Add payment option", () => {
+
+
+      // Click Account button
+      LoginPage.accountButton.click();
+      // Click Login button
+      LoginPage.loginButton.click();
+      // Set email value to "demo"
+      LoginPage.email.type("demo");
+      // Set password value to "demo"
+      LoginPage.password.type("demo");
+      // Click Log in
+      LoginPage.logIn.click();
+
+
+      // Click on Account
+      LoginPage.accountButton.click();
+      // Click on Orders & Payment
+      PaymentOptionsPage.ordersAndPayments.first().click();
+      // // Click on My payment options
+      PaymentOptionsPage.paymentOptions.click();
+      // // Create page object - SavedPaymentMethodsPage
+      // // Click Add new card
+      SavedPaymentMethodsPage.addNewCardButton.click();
+      // // Fill in Name
+      // PaymentOptionsPage.name.type("John Doe");
+      // // Fill in Card Number
+      // PaymentOptionsPage.cardNumber.type("1234567891234567");
+      // // Set expiry month to 7
+      // PaymentOptionsPage.expiryMonth.select("7");
+      // // Set expiry year to 2090
+      // PaymentOptionsPage.expiryYear.select("2090");
+      // // Click Submit button
+      // PaymentOptionsPage.submitButton.click();
+      // // Validate that the card shows up in the list
+      // PaymentOptionsPage.validateCard.should("contain.text", "John Doe");
+    });
     // Click on Account
     // Click on Orders & Payment
     // Click on My payment options
