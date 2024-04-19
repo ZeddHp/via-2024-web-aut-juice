@@ -80,7 +80,7 @@ describe("Juice-shop scenarios", () => {
 
   context("With auto login", () => {
     beforeEach(() => {
-      //cy.login("demo", "demo");
+      cy.login("demo", "demo");
       HomePage.visit();
       HomePage.dismissButton.click();
     });
@@ -266,19 +266,6 @@ describe("Juice-shop scenarios", () => {
 
     // Create scenario - Add payment option
     it.only("Add payment option", () => {
-
-
-      // Click Account button
-      LoginPage.accountButton.click();
-      // Click Login button
-      LoginPage.loginButton.click();
-      // Set email value to "demo"
-      LoginPage.email.type("demo");
-      // Set password value to "demo"
-      LoginPage.password.type("demo");
-      // Click Log in
-      LoginPage.logIn.click();
-
 
       // Click on Account
       LoginPage.accountButton.click();
