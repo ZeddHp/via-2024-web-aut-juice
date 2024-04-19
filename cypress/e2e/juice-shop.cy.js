@@ -7,6 +7,7 @@ import { OrderCompletionPage } from "../pageObjects/OrderCompletionPage";
 import { OrderSummaryPage } from "../pageObjects/OrderSummaryPage";
 import { PaymentOptionsPage } from "../pageObjects/PaymentOptionsPage";
 import { SavedAddressesPage } from "../pageObjects/SavedAddressesPage";
+import { SavedPaymentMethodsPage } from "../pageObjects/SavedPaymentMethodsPage";
 import { SelectAddressPage } from "../pageObjects/SelectAddressPage";
 
 describe("Juice-shop scenarios", () => {
@@ -289,28 +290,18 @@ describe("Juice-shop scenarios", () => {
       // // Click Add new card
       SavedPaymentMethodsPage.addNewCardButton.click();
       // // Fill in Name
-      // PaymentOptionsPage.name.type("John Doe");
+      SavedPaymentMethodsPage.name.should("contain.text", "Name").first().type("John Doe");
       // // Fill in Card Number
       // PaymentOptionsPage.cardNumber.type("1234567891234567");
-      // // Set expiry month to 7
-      // PaymentOptionsPage.expiryMonth.select("7");
-      // // Set expiry year to 2090
-      // PaymentOptionsPage.expiryYear.select("2090");
-      // // Click Submit button
-      // PaymentOptionsPage.submitButton.click();
-      // // Validate that the card shows up in the list
-      // PaymentOptionsPage.validateCard.should("contain.text", "John Doe");
+      SavedPaymentMethodsPage.cardNumber.type("1234567891234567");
+
+      SavedPaymentMethodsPage.expiryDate.select("7");
+
+      SavedPaymentMethodsPage.expiryYear.select("2090");
+
+      SavedPaymentMethodsPage.submitButton.click();
+
+      SavedPaymentMethodsPage.validateName.should("contain.text", "John Doe");
     });
-    // Click on Account
-    // Click on Orders & Payment
-    // Click on My payment options
-    // Create page object - SavedPaymentMethodsPage
-    // Click Add new card
-    // Fill in Name
-    // Fill in Card Number
-    // Set expiry month to 7
-    // Set expiry year to 2090
-    // Click Submit button
-    // Validate that the card shows up in the list
   });
 });
